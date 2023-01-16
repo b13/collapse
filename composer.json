@@ -1,0 +1,21 @@
+{
+    "name": "b13/collapse",
+    "description": "Collapse large content element previews in TYPO3's Page Module",
+    "type": "typo3-cms-extension",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-backend": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "B13\\Collapse\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "collapse"
+        }
+    }
+}
