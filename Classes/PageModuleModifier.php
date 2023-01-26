@@ -11,6 +11,7 @@ namespace B13\Collapse;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -33,8 +34,11 @@ class PageModuleModifier
     {
         if ($parentObject instanceof PageLayoutView || $parentObject instanceof GridColumnItem) {
             $contentElementId = (int)$parameters[1];
+            $row = $parameters[2];
+            $recordTitle = BackendUtility::getRecordTitle('tt_content', $row);
+            $typeLabel = $this->getTypeLabel($row);
             $isCollapsed = in_array($contentElementId, $this->getCollapsedItems(), true);
-            return '<button type="button" aria-expanded="' . ($isCollapsed ? 'false' : 'true') . '" data-bs-toggle="collapse" data-bs-target="#element-tt_content-' . $contentElementId . ' > .t3-page-ce-dragitem > .t3-page-ce-body > .t3-page-ce-body-inner" class="btn btn-default btn-sm" data-b13-collapse="' . $contentElementId . '">'
+            return '<button type="button" aria-expanded="' . ($isCollapsed ? 'false' : 'true') . '" data-bs-toggle="collapse" data-bs-target="#element-tt_content-' . $contentElementId . ' > .t3-page-ce-dragitem > .t3-page-ce-body > .t3-page-ce-body-inner" class="btn btn-default btn-sm" data-b13-collapse="' . $contentElementId . '" data-b13-title="' . GeneralUtility::jsonEncodeForHtmlAttribute(['title' => $recordTitle, 'type' => $typeLabel]) . '">'
                 . $this->iconFactory->getIcon('actions-chevron-up', Icon::SIZE_SMALL)->render()
                 . $this->iconFactory->getIcon('actions-chevron-down', Icon::SIZE_SMALL)->render()
             . '</button>';
@@ -53,5 +57,21 @@ class PageModuleModifier
         $result = $GLOBALS['BE_USER']->uc['B13']['Collapse'] ?? '';
         $collapsedItems = GeneralUtility::intExplode(',', $result);
         return array_filter($collapsedItems);
+    }
+
+    protected function getTypeLabel(array $row): string
+    {
+        $typeValue = BackendUtility::getTCAtypeValue('tt_content', $row);
+        $label = '';
+        foreach ($GLOBALS['TCA']['tt_content']['columns']['CType']['config']['items'] as $itm) {
+            if ($itm[1] == $typeValue) {
+                $label = $itm[0];
+                break;
+            }
+        }
+        if ($label !== '') {
+            return $GLOBALS['LANG']->sL($label);
+        }
+        return '';
     }
 }
