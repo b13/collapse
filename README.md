@@ -14,7 +14,7 @@ content elements.
 Install this extension via `composer req b13/collapse`.
 
 You can also download the extension from the
-[TYPO3 Extension Repository](https://extensions.typo3.org/extension/make/)
+[TYPO3 Extension Repository](https://extensions.typo3.org/extension/collapse/)
 and activate it in the Extension Manager of your TYPO3 installation.
 
 ## Usage
