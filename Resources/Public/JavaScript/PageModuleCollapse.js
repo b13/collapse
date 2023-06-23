@@ -28,13 +28,15 @@ define([
           document.querySelector(btn.dataset.bsTarget).classList.add('show');
           substituteNode.classList.add('d-none');
         }
-        // Update BE_USERs->uc when collapse/show is used
+        // Add event handles to update BE_USERs->uc when collapse/show is used
+        // The CE is expanded again
         document.querySelector(btn.dataset.bsTarget).addEventListener('show.bs.collapse', () => {
-          PersistentStorage.addToList('B13.Collapse', btn.dataset.b13Collapse);
+          PersistentStorage.removeFromList('B13.Collapse', btn.dataset.b13Collapse);
           substituteNode.classList.add('d-none');
         });
+        // The CE is about to be collapsed
         document.querySelector(btn.dataset.bsTarget).addEventListener('hide.bs.collapse', () => {
-          PersistentStorage.removeFromList('B13.Collapse', btn.dataset.b13Collapse);
+          PersistentStorage.addToList('B13.Collapse', btn.dataset.b13Collapse);
           substituteNode.classList.remove('d-none');
         });
 
