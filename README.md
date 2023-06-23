@@ -24,6 +24,15 @@ No configuration is needed nor provided.
 The current state - if an element is expanded or collapsed - is stored
 within the users' settings "UC".
 
+## Futher Development
+
+This is our bare minimum feature set, a few features will following along:
+
+* Enable / disable collapsing per Content Type
+* Disable collapsing in User Settings
+* Support for TYPO3 v12
+* Customizable preview in collapsed state
+
 ## Credits
 
 This extension was created by Benni Mack in 2023 for [b13 GmbH, Stuttgart](https://b13.com).
