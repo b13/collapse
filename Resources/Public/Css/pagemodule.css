@@ -1,10 +1,10 @@
-.t3-page-ce-header-icons-left button[data-b13-collapse] {
+.t3-page-ce-header-left button[data-b13-collapse] {
     display: none;
 }
 
-.t3-page-ce-header-icons-right button[data-b13-collapse][aria-expanded=false] > span:first-child {
+.t3-page-ce-header-right button[data-b13-collapse][aria-expanded=false] > span:first-child {
     display: none;
 }
-.t3-page-ce-header-icons-right button[data-b13-collapse][aria-expanded=true] > span:last-child {
+.t3-page-ce-header-right button[data-b13-collapse][aria-expanded=true] > span:last-child {
     display: none;
 }
