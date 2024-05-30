@@ -2,16 +2,10 @@
 declare(strict_types=1);
 namespace B13\Collapse\ViewHelpers\Collapse;
 
-use B13\Container\Backend\Grid\ContainerGridColumnItem;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\View\BackendLayout\Grid\AbstractGridObject;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumn;
-use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class ColumnViewHelper extends CollapsibleViewHelper
 {
