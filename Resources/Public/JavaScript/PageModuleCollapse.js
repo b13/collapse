@@ -36,7 +36,23 @@ define([
         btn.remove();
         toolbar.querySelector(selectors.rightToolbarContainer).append(btn);
 
+        const substituteContent = JSON.parse(btn.dataset.b13Title);
+        const substituteNode = document.createElement('div');
+        substituteNode.innerHTML = '<strong>' + substituteContent['title'] + '</strong>' + ' ' + substituteContent['type'];
+        substituteNode.classList.add('p-2');
+
         initialize(btn);
+
+        if (btn.ariaExpanded == 'true') {
+          substituteNode.classList.add('d-none');
+        }
+        document.querySelector(btn.dataset.bsTarget).addEventListener('show.bs.collapse', () => {
+          substituteNode.classList.add('d-none');
+        });
+        document.querySelector(btn.dataset.bsTarget).addEventListener('hide.bs.collapse', () => {
+          substituteNode.classList.remove('d-none');
+        });
+        document.querySelector(btn.dataset.bsTarget).parentNode.prepend(substituteNode);
       });
 
 

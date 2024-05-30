@@ -42,7 +42,9 @@ class ContentViewHelper extends CollapsibleViewHelper
             data-bs-toggle="collapse" 
             data-bs-target="#element-tt_content-' . $contentElementId . ' > .t3-page-ce-dragitem > .t3-page-ce-body > .element-preview" 
             class="btn btn-default btn-borderless" 
-            data-b13-collapse="' . $identifier . '">'
+            data-b13-collapse="' . $identifier . '"
+            data-b13-title="' . GeneralUtility::jsonEncodeForHtmlAttribute(['title' => $recordTitle, 'type' => $typeLabel]) . '"
+            >'
                 . $iconFactory->getIcon('actions-chevron-up', Icon::SIZE_SMALL)->render()
                 . $iconFactory->getIcon('actions-chevron-down', Icon::SIZE_SMALL)->render()
                 . '</button>';
