@@ -24,7 +24,7 @@ define([
 
         // Update the correct status as we are unable to modify the templates
         document.querySelector(btn.dataset.bsTarget).classList.add('collapse');
-        if (btn.ariaExpanded == 'true') {
+        if (btn.getAttribute('aria-expanded') == 'true') {
           document.querySelector(btn.dataset.bsTarget).classList.add('show');
           substituteNode.classList.add('d-none');
         }
