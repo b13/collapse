@@ -36,6 +36,9 @@ define([
         });
         // The CE is about to be collapsed
         document.querySelector(btn.dataset.bsTarget).addEventListener('hide.bs.collapse', () => {
+          if (PersistentStorage.isset('B13.Collapse') === false) {
+            PersistentStorage.set('B13.Collapse','');
+          }
           PersistentStorage.addToList('B13.Collapse', btn.dataset.b13Collapse);
           substituteNode.classList.remove('d-none');
         });
