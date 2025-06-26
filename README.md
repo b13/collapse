@@ -30,7 +30,6 @@ This is our bare minimum feature set, a few features will following along:
 
 * Enable / disable collapsing per Content Type
 * Disable collapsing in User Settings
-* Support for TYPO3 v12
 * Customizable preview in collapsed state
 
 ## Credits

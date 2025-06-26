@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Collapse\ViewHelpers;
 
 use B13\Container\Backend\Grid\ContainerGridColumnItem;
@@ -13,7 +15,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CollapseViewHelper extends AbstractViewHelper
 {
-
     protected $escapeOutput = false;
 
     public function initializeArguments(): void

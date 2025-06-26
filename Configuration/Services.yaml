@@ -5,10 +5,6 @@ services:
     public: false
   B13\Collapse\:
     resource: '../Classes/*'
-    exclude: '../Classes/Domain/Model/*'
-
-  B13\Collapse\PageModuleModifier:
-    public: true
 
   B13\Collapse\EventListener\ModifyPageLayoutContentEventListener:
     tags:

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Content Element Collapse or Expand View in TYPO3 Page Module',
     'description' => 'Collapse large content element previews in TYPO3\'s Page Module.',
@@ -11,7 +13,7 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '2.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.4.0-12.4.99',
+            'typo3' => '12.4.0-13.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],
