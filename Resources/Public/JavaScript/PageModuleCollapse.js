@@ -8,7 +8,7 @@ define([
     let selectors = {
       button: 'button[data-b13-collapse]',
       toolbarContainer: '.t3-page-ce-header',
-      rightToolbarContainer: '.t3-page-ce-header-icons-right > .btn-toolbar'
+      rightToolbarContainer: '.t3-page-ce-header-right > .btn-toolbar'
     };
 
     DocumentService.ready().then(() => {
