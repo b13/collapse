@@ -1,3 +1,9 @@
 templates.typo3/cms-backend {
   1691683586 = b13/collapse:Resources/Private/TemplateOverrides
 }
+
+[typo3.branch == "12.4"]
+ templates.typo3/cms-backend {
+   1691683586 = b13/collapse:Resources/Private/TemplateOverrides12
+ }
+[end]
