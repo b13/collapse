@@ -8,7 +8,7 @@ use B13\Container\Backend\Grid\ContainerGridColumnItem;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\AbstractGridObject;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
-use TYPO3\CMS\Core\Domain\Record;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -22,7 +22,7 @@ class CollapseViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument('contentElementId', 'int', 'Content Element UID', true);
-        $this->registerArgument('row', 'mixed', 'Content record array or Record object', true);
+        $this->registerArgument('row', 'array|' . RecordInterface::class, 'Content record array or Record object', true);
         $this->registerArgument('type', AbstractGridObject::class, '', true);
     }
 
@@ -30,7 +30,7 @@ class CollapseViewHelper extends AbstractViewHelper
     {
         $type = $this->arguments['type'];
         $row = $this->arguments['row'];
-        $row = $row instanceof Record ? $row->toArray(true) : $row;
+        $row = $row instanceof RecordInterface ? $row->toArray(true) : $row;
         $contentElementId = $this->arguments['contentElementId'];
 
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
