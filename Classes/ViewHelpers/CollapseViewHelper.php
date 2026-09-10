@@ -8,8 +8,9 @@ use B13\Container\Backend\Grid\ContainerGridColumnItem;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\AbstractGridObject;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
-use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -21,7 +22,7 @@ class CollapseViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument('contentElementId', 'int', 'Content Element UID', true);
-        $this->registerArgument('row', 'array', 'Content record array', true);
+        $this->registerArgument('row', 'array|' . RecordInterface::class, 'Content record array or Record object', true);
         $this->registerArgument('type', AbstractGridObject::class, '', true);
     }
 
@@ -29,6 +30,7 @@ class CollapseViewHelper extends AbstractViewHelper
     {
         $type = $this->arguments['type'];
         $row = $this->arguments['row'];
+        $row = $row instanceof RecordInterface ? $row->toArray(true) : $row;
         $contentElementId = $this->arguments['contentElementId'];
 
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
@@ -39,8 +41,8 @@ class CollapseViewHelper extends AbstractViewHelper
             $isCollapsed = in_array($contentElementId, $this->getCollapsedItems(), true);
 
             return '<button type="button" aria-expanded="' . ($isCollapsed ? 'false' : 'true') . '" data-bs-toggle="collapse" data-bs-target="#element-tt_content-' . $contentElementId . ' > .t3-page-ce-dragitem > .t3-page-ce-body > .element-preview" class="btn btn-default btn-sm" data-b13-collapse="' . $contentElementId . '" data-b13-title="' . GeneralUtility::jsonEncodeForHtmlAttribute(['title' => $recordTitle, 'type' => $typeLabel]) . '">'
-                . $iconFactory->getIcon('actions-chevron-up', Icon::SIZE_SMALL)->render()
-                . $iconFactory->getIcon('actions-chevron-down', Icon::SIZE_SMALL)->render()
+                . $iconFactory->getIcon('actions-chevron-up', IconSize::SMALL)->render()
+                . $iconFactory->getIcon('actions-chevron-down', IconSize::SMALL)->render()
                 . '</button>';
         }
 
