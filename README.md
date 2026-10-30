@@ -19,16 +19,35 @@ and activate it in the Extension Manager of your TYPO3 installation.
 
 ## Usage
 
-No configuration is needed nor provided.
+No configuration is needed. By default, all content elements can be collapsed.
 
 The current state - if an element is expanded or collapsed - is stored
 within the users' settings "UC".
+
+## Configuration
+
+Collapsing can be restricted to certain Content Types (CType) via Page TSconfig:
+
+```typoscript
+mod.web_layout.tt_content.collapse {
+  # Only these CTypes can be collapsed (empty = all)
+  includeCTypes = text, textmedia, image
+  # These CTypes can never be collapsed
+  excludeCTypes = html, shortcut
+}
+```
+
+If `includeCTypes` is set, only the listed CTypes get the collapse button.
+`excludeCTypes` is applied afterwards and removes CTypes from the result.
+Both options can be used independently or combined.
+
+As with any Page TSconfig, the configuration can differ per page tree and
+can be overridden per user or group via User TSconfig (`page.mod.web_layout...`).
 
 ## Futher Development
 
 This is our bare minimum feature set, a few features will following along:
 
-* Enable / disable collapsing per Content Type
 * Disable collapsing in User Settings
 * Customizable preview in collapsed state
 

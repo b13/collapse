@@ -35,7 +35,7 @@ class CollapseViewHelper extends AbstractViewHelper
 
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 
-        if ($type instanceof GridColumnItem && !$type instanceof ContainerGridColumnItem) {
+        if ($type instanceof GridColumnItem && !$type instanceof ContainerGridColumnItem && $this->isEnabledForCType($row)) {
             $recordTitle = BackendUtility::getRecordTitle('tt_content', $row);
             $typeLabel = $this->getTypeLabel($row);
             $isCollapsed = in_array($contentElementId, $this->getCollapsedItems(), true);
@@ -55,6 +55,20 @@ class CollapseViewHelper extends AbstractViewHelper
         $collapsedItems = GeneralUtility::intExplode(',', $result);
 
         return array_filter($collapsedItems);
+    }
+
+    protected function isEnabledForCType(array $row): bool
+    {
+        $tsConfig = BackendUtility::getPagesTSconfig((int)($row['pid'] ?? 0))['mod.']['web_layout.']['tt_content.']['collapse.'] ?? [];
+        $cType = (string)($row['CType'] ?? '');
+        $includeCTypes = GeneralUtility::trimExplode(',', (string)($tsConfig['includeCTypes'] ?? ''), true);
+        $excludeCTypes = GeneralUtility::trimExplode(',', (string)($tsConfig['excludeCTypes'] ?? ''), true);
+
+        if ($includeCTypes !== [] && !in_array($cType, $includeCTypes, true)) {
+            return false;
+        }
+
+        return !in_array($cType, $excludeCTypes, true);
     }
 
     protected function getTypeLabel(array $row): string
