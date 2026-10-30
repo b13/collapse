@@ -15,7 +15,11 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "collapse"
+            "extension-key": "collapse",
+            "version": "3.0.0",
+            "Package": {
+                "providesPackages": {}
+            }
         }
     }
 }
